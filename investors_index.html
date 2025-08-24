@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Andre — Investor Deck</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; padding: 24px; background:#111; color:#eee; }
+    .wrap { max-width: 880px; margin: 0 auto; }
+    h1 { margin: 0 0 8px; font-size: 24px; }
+    p { margin: 0 0 16px; line-height: 1.5; color:#cfcfcf; }
+    .actions { display:flex; gap:12px; margin: 16px 0 20px; flex-wrap:wrap; }
+    a.button { text-decoration:none; padding:12px 16px; border-radius:12px; border:1px solid #ffd64d; }
+    a.primary { background:#ffd64d; color:#111; border-color:#ffd64d; font-weight:600; }
+    .viewer { width:100%; height:70vh; border:none; border-radius:12px; background:#222; }
+    .note { font-size: 12px; color:#aaa; margin-top:8px; }
+  </style>
+  <script>
+    const pdfCandidates = ["deck.pdf", "aaaplaceholder.PDF"];
+    function choosePDF() {
+      return pdfCandidates[0];
+    }
+    function fallbackPDF(iframe) {
+      if (iframe.dataset.triedFallback === "1") return;
+      iframe.dataset.triedFallback = "1";
+      iframe.src = pdfCandidates[1];
+      document.getElementById("viewBtn").href = pdfCandidates[1];
+      document.getElementById("dlBtn").href = pdfCandidates[1];
+    }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Andre — Investor Deck</h1>
+    <p>Privacy-first, voice-forward, built to protect time, peace, and energy.</p>
+
+    <div class="actions">
+      <a id="viewBtn" class="button primary" href="deck.pdf" target="_blank" rel="noopener">Open Deck</a>
+      <a id="dlBtn" class="button" href="deck.pdf" download>Download PDF</a>
+      <a class="button" href="../index.html">← Back to site</a>
+    </div>
+
+    <iframe
+      class="viewer"
+      id="pdfFrame"
+      src=""
+      onload=""
+      onerror="fallbackPDF(this)"></iframe>
+
+    <noscript>
+      <p class="note">JavaScript is off. Use the buttons above to view or download the deck.</p>
+    </noscript>
+
+    <p class="note">If the preview below doesn’t load on your device, use “Open Deck.” Some mobile browsers block inline PDFs.</p>
+  </div>
+
+  <script>
+    const frame = document.getElementById("pdfFrame");
+    frame.src = choosePDF();
+    frame.onerror = () => fallbackPDF(frame);
+  </script>
+</body>
+</html>
