@@ -1,53 +1,6 @@
-<div class="sky"></div>
-<div class="sun-glow"></div>
-<div class="arc-container">
-  <div id="sunflower-wrap" class="sunflower"></div>
-</div>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <style>
-  .sky {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 45vh;
-    pointer-events: none;
-    z-index: 1;
-  }
-  .sun-glow {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 65px;
-    background: radial-gradient(ellipse at 50% 20%, #ffeb3b 70%, transparent 100%);
-    opacity: 0.55;
-    filter: blur(10px);
-    z-index: 2;
-    animation: glow-move 8s linear infinite alternate;
-  }
-  @keyframes glow-move {
-    0% { background-position: 10% 0%; }
-    100% { background-position: 90% 0%; }
-  }
-  .arc-container {
-    position: relative;
-    width: 520px;
-    height: 340px;
-    z-index: 3;
-    margin: 0 auto;
-  }
-  .sunflower {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    left: 0;
-    bottom: 10px;
-    transform-origin: 50% 80%;
-    transition: filter 0.2s;
-    filter: drop-shadow(0 4px 10px #e6c37b60);
-  }
-</style>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Andre – A Companion That Turns Toward You</title>
@@ -70,12 +23,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-    }
-    .sunflower {
-      margin-top: 2.5rem;
-      width: 110px;
-      height: auto;
-      display: block;
     }
     .nav {
       margin-top: 1.2rem;
@@ -140,10 +87,56 @@
       .intro { padding: 1.25rem 1rem; }
       h1 { font-size: 1.45rem; }
     }
+    /* --- Sunflower Animation Styles --- */
+    .sky {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 45vh;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .sun-glow {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 65px;
+      background: radial-gradient(ellipse at 50% 20%, #ffeb3b 70%, transparent 100%);
+      opacity: 0.55;
+      filter: blur(10px);
+      z-index: 2;
+      animation: glow-move 8s linear infinite alternate;
+    }
+    @keyframes glow-move {
+      0% { background-position: 10% 0%; }
+      100% { background-position: 90% 0%; }
+    }
+    .arc-container {
+      position: relative;
+      width: 520px;
+      height: 340px;
+      z-index: 3;
+      margin: 0 auto;
+    }
+    .sunflower {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      left: 0;
+      bottom: 10px;
+      transform-origin: 50% 80%;
+      transition: filter 0.2s;
+      filter: drop-shadow(0 4px 10px #e6c37b60);
+    }
   </style>
 </head>
 <body>
-  <img src="sunflower.svg" alt="Andre Sunflower Logo" class="sunflower" />
+  <!-- Animated Sunflower Arc at Top -->
+  <div class="sky"></div>
+  <div class="sun-glow"></div>
+  <div class="arc-container">
+    <div id="sunflower-wrap" class="sunflower"></div>
+  </div>
+
+  <!-- Navigation and Content -->
   <nav class="nav">
     <a href="investor.html">Investor Page</a>
     <a href="press.html">Press Team</a>
@@ -167,5 +160,42 @@
     &copy; 2025 B.L.A. Technologies LLC. All rights reserved.<br>
     Made with sunlight, for humans, by Bill &amp; Joe.
   </div>
+
+  <!-- Sunflower Animation Script -->
+  <script>
+    // SVG markup from your uploaded realistic sunflower
+    const sunflowerSVG = `<svg viewBox="0 0 500 500" width="150" height="150" xmlns="http://www.w3.org/2000/svg"><g id="sunflower-main"><ellipse cx="250" cy="420" rx="24" ry="60" fill="#82b366"/><ellipse cx="240" cy="450" rx="11" ry="33" fill="#82b366"/><ellipse cx="260" cy="470" rx="11" ry="33" fill="#82b366"/><circle cx="250" cy="230" r="115" fill="#ffec80" stroke="#d89c2a" stroke-width="12"/><circle cx="250" cy="230" r="65" fill="#4d330b" stroke="#d89c2a" stroke-width="6"/><g id="petals">` +
+      Array.from({length:24}).map((_,i)=>{
+        const angle = (360/24)*i;
+        const rad = angle*Math.PI/180;
+        const x = 250+Math.sin(rad)*125;
+        const y = 230-Math.cos(rad)*125;
+        return `<ellipse cx="${x}" cy="${y}" rx="32" ry="85" fill="#ffe452" stroke="#d89c2a" stroke-width="7" transform="rotate(${angle} ${x} ${y})"/>`
+      }).join('')+
+      `</g></g></svg>`;
+    document.getElementById('sunflower-wrap').innerHTML = sunflowerSVG;
+
+    // Arc parameters
+    const arcRadius = 145;
+    const arcStart = Math.PI * 0.15; // left (about 27deg)
+    const arcEnd = Math.PI * 0.85; // right (about 153deg)
+    const duration = 10; // seconds per swing
+    function animateSunflower() {
+      const t = ((Date.now()/1000) % duration) / duration;
+      // Ping-pong swing
+      const arcT = t < 0.5 ? t*2 : (1-t)*2;
+      const theta = arcStart + (arcEnd-arcStart)*arcT;
+      const centerX = 260, centerY = 220;
+      const x = centerX + arcRadius*Math.cos(theta);
+      const y = centerY + arcRadius*Math.sin(theta);
+      const faceAngle = (theta*180/Math.PI) - 90; // rotate so it "looks at" the sun
+      const flower = document.getElementById('sunflower-wrap');
+      flower.style.left = (x-75)+"px";
+      flower.style.top = (y-110)+"px";
+      flower.style.transform = `rotate(${faceAngle}deg)`;
+      requestAnimationFrame(animateSunflower);
+    }
+    animateSunflower();
+  </script>
 </body>
 </html>
