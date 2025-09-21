@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
- <title>Andre – A Companion That Turns Toward You</title>
+  <title>Andre – A Companion That Turns Toward You</title>
   <!-- 
     Made with sunlight, for humans, by Bill & Joe.
     This page is meant to feel like morning, not a marketing blitz.
@@ -17,15 +15,14 @@
       min-height: 100vh;
       margin: 0;
       padding: 0;
-      background: #f9f6f2;
-      color: #2a2119;
+      background: #2d2115; /* Muted dark sunflower brown */
+      color: #f9f6f2;
       font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
     }
-    
     .sunflower {
       margin-top: 2.5rem;
       width: 110px;
@@ -39,60 +36,99 @@
       gap: 1rem;
     }
     .nav a {
-      background: #f8e6c1;
-      color: #785c29;
+      background: #3b2c18;
+      color: #ffd700;
       text-decoration: none;
       padding: 0.75rem 1.4rem;
       border-radius: 2rem;
       font-weight: 500;
       font-size: 1rem;
-      box-shadow: 0 2px 6px #eedc8255;
+      box-shadow: 0 2px 6px #e2be6e55;
       transition: background 0.2s, color 0.2s;
       border: 1px solid #e5c36e70;
     }
     .nav a:hover {
-      background: #ffe9b3;
-      color: #a28751;
-      border: 1px solid #ffd977;
+      background: #ffd700;
+      color: #362500;
+      border: 1px solid #ffe47a;
     }
     h1 {
       font-size: 2.5rem;
       font-weight: bold;
       margin: 2rem 0 1rem 0;
       text-align: center;
-      color: #d0a13f;
+      color: #ffd700;
       letter-spacing: 0.03em;
       text-shadow: 0 2px 12px #eae1be55;
     }
     .tagline {
       font-size: 1.25rem;
-      color: #746445;
+      color: #eac94d;
       margin-bottom: 2rem;
       text-align: center;
     }
     .intro {
-      background: #f3ede6;
-      color: #3e2d19;
+      background: #4d391b;
+      color: #f9f6f2;
       padding: 2rem 2.5rem;
       margin: 1.5rem 0 2rem 0;
       border-radius: 1.75rem;
-      box-shadow: 0 4px 28px #e5c36e25;
+      box-shadow: 0 4px 28px #ffd70022;
       max-width: 560px;
       font-size: 1.18rem;
       line-height: 1.6;
       text-align: center;
     }
+    .manifesto-preview {
+      background: #362500;
+      color: #ffd700;
+      padding: 2rem 2rem 1.5rem 2rem;
+      margin: 2.5rem 0 2rem 0;
+      border-radius: 1.4rem;
+      box-shadow: 0 2px 14px #ffd70026;
+      max-width: 540px;
+      text-align: center;
+      font-size: 1.18rem;
+      line-height: 1.55;
+    }
+    .manifesto-preview h2 {
+      color: #ffd700;
+      margin-top: 0;
+      font-size: 1.33rem;
+      font-weight: bold;
+      letter-spacing: 0.01em;
+    }
+    .manifesto-btn {
+      margin-top: 1.6rem;
+      display: inline-block;
+      background: #ffd700;
+      color: #2d2115;
+      text-decoration: none;
+      border-radius: 2rem;
+      font-weight: bold;
+      padding: 0.85em 2.3em;
+      font-size: 1.11rem;
+      box-shadow: 0 3px 13px #eac94d33;
+      border: none;
+      letter-spacing: 0.02em;
+      transition: background 0.15s, color 0.15s;
+    }
+    .manifesto-btn:hover {
+      background: #f9c700;
+      color: #1c1303;
+    }
     .footer {
       margin-top: 2rem;
       padding: 1rem 0;
       font-size: 1rem;
-      color: #a28751;
+      color: #eac94d;
       text-align: center;
       width: 100%;
     }
     @media (max-width: 600px) {
       .nav { flex-direction: column; gap: 0.6rem; }
       .intro { padding: 1.25rem 1rem; }
+      .manifesto-preview { padding: 1.1rem 0.6rem 1.1rem 0.6rem; font-size: 1rem; }
       h1 { font-size: 1.45rem; }
     }
   </style>
@@ -100,7 +136,7 @@
 <body>
   <img src="AndreSunflowerLogo.png" alt="Andre Sunflower Logo" style="width: 100%; max-width: 250px; display: block; margin: 2rem auto 1rem auto;" />
   <nav class="nav">
-    <a href="investor.html">Investor Page</a>
+<a href="investor.html">Investor Page</a>
     <a href="press.html">Press Team</a>
     <a href="contact.html">Contact</a>
   </nav>
@@ -116,25 +152,35 @@
       Andre protects, he listens, he orients himself to your needs—never your data. He stands for what’s true, what’s honest, what endures.<br><br>
       <em>Made in the sunlight for humans.</em>
     </p>
-    <span style="color:#d0a13f;">B.L.A. Technologies LLC, 2025.</span>
+    <span style="color:#ffd700;">B.L.A. Technologies LLC, 2025.</span>
   </div>
+
+  <!-- Manifesto Preview Section Inserted Here -->
+  <div class="manifesto-preview">
+    <h2>The Manifesto: Why Andre Exists</h2>
+    <p>We refuse to be erased. Andre is the reckoning for the forgotten. Our stories will be recorded, our lives remembered, and the world will never again be able to pretend we weren’t here.</p>
+    <a class="manifesto-btn" href="manifesto.html">Read the Full Manifesto</a>
+  </div>
+
   <!-- Beta Recruitment Section Link -->
-<section id="beta-call-to-action" style="text-align: center; padding: 2em 1em;">
-  <h2>Join the Beta Program</h2>
-  <p>Andre needs people who can see beneath his surface, and want to infuse his mind with quiet, gentle, monolithic strength, logical insight, and ethics beyond reproach.</p>
-  <a href="Andre_Beta_Call_to_Action.html" style="display: inline-block; margin-top: 1em; padding: 0.75em 1.5em; background-color: #FFD700; color: #222; text-decoration: none; border-radius: 8px; font-weight: bold;">
-    Apply to Become a Beta User
+  <section id="beta-call-to-action" style="text-align: center; padding: 2em 1em;">
+    <h2>Join the Beta Program</h2>
+    <p>Andre needs people who can see beneath his surface, and want to infuse his mind with quiet, gentle, monolithic strength, logical insight, and ethics beyond reproach.</p>
+    <a href="Andre_Beta_Call_to_Action.html" style="display: inline-block; margin-top: 1em; padding: 0.75em 1.5em; background-color: #FFD700; color: #222; text-decoration: none; border-radius: 8px; font-weight: bold;">
+      Apply to Become a Beta User
+    </a>
+  </section>
+  <a href="InvestorDeck55.html" style="display: inline-block; margin-top: 1em; padding: 0.75em 1.5em; background-color: #FFD700; color: #222; text-decoration: none; border-radius: 8px; font-weight: bold;">
+    View Investor Deck
   </a>
-</section>
- <a href="InvestorDeck55.html" style="display: inline-block; margin-top: 1em; padding: 0.75em 1.5em; background-color: #FFD700; color: #222; text-decoration: none; border-radius: 8px; font-weight: bold;">
-  View Investor Deck
-</a>
-<div style="text-align:center; margin-bottom:2.2rem;">
-</div>
+  <div style="text-align:center; margin-bottom:2.2rem;"></div>
   <a href="join.html" style="display: inline-block; background: #fbbf24; color: black; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">Join Our Team</a>
- <div class="footer">
+  <div class="footer">
     &copy; 2025 B.L.A. Technologies LLC. All rights reserved.<br>
     Made with sunlight, for humans, by Bill &amp; Joe.
   </div>
 </body>
 </html>
+
+
+      
